@@ -1,15 +1,20 @@
-let mix = require('laravel-mix');
+const { mix } = require('laravel-mix');
 
 /*
  |--------------------------------------------------------------------------
- | Mix Asset Management
+ | Mix Asset Management - Leademy Pay
  |--------------------------------------------------------------------------
- |
- | Mix provides a clean, fluent API for defining some Webpack build steps
- | for your Laravel application. By default, we are compiling the Sass
- | file for the application as well as bundling up all the JS files.
- |
  */
 
+// Основное приложение
 mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css');
+
+// Копируем статические ресурсы
+mix.copyDirectory('resources/assets/images', 'public/img')
+   .copyDirectory('resources/assets/fonts', 'public/fonts');
+
+// Дополнительные файлы для админки (если нужно отдельно)
+if (mix.inProduction()) {
+    mix.version(); // Добавляет хеши для кеширования
+}

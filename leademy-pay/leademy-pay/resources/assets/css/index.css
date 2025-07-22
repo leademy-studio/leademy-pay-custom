@@ -1,0 +1,681 @@
+/* ========================================================================== */
+/* Шрифты (Fonts)                                                           */
+/* ========================================================================== */
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('../fonts/Gilroy-Thin.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+    font-display: auto;
+}
+@font-face {
+    font-family: 'Gilroy';
+    src: url('../fonts/Gilroy-UltraLight.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+    font-display: auto;
+}
+@font-face {
+    font-family: 'Gilroy';
+    src: url('../fonts/Gilroy-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: auto;
+}
+@font-face {
+    font-family: 'Gilroy';
+    src: url('../fonts/Gilroy-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: auto;
+}
+@font-face {
+    font-family: 'Gilroy';
+    src: url('../fonts/Gilroy-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: auto;
+}
+@font-face {
+    font-family: 'Gilroy';
+    src: url('../fonts/Gilroy-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: auto;
+}
+@font-face {
+    font-family: 'Gilroy';
+    src: url('../fonts/Gilroy-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: auto;
+}
+@font-face {
+    font-family: 'Gilroy';
+    src: url('../fonts/Gilroy-Heavy.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: auto;
+}
+
+/* ========================================================================== */
+/* Переменные (CSS Variables)                                               */
+/* ========================================================================== */
+
+:root {
+    /* Colors */
+    --color-primary: #14274E;
+    --color-primary-light: #2E5AB4;
+    --color-white: #FFF;
+    --color-light-gray: #F5F6F9;
+    --color-medium-gray: #686767;
+    --color-dark-gray: #5E5E5E;
+    --color-border: #E0E0E0;
+    --blue: #14274e; /* Legacy */
+
+    /* Gradients */
+    --gradient-text: linear-gradient(333deg, var(--color-primary) 38.4%, var(--color-primary-light) 238.57%);
+    --gradient-calculator: linear-gradient(208deg, var(--color-white) -43.39%, var(--color-light-gray) 47.61%);
+}
+
+/* ========================================================================== */
+/* Общие стили и сброс (Global)                                             */
+/* ========================================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Gilroy', sans-serif;
+    background-color: var(--color-white);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    color: var(--color-dark-gray);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--blue);
+    font-weight: 600;
+}
+
+h1 { font-size: 2.986rem; line-height: 1.2; }
+h2 { font-size: 2.488rem; line-height: 1.2; }
+h3 { font-size: 2.074rem; line-height: 1.3; }
+
+p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-medium-gray);
+}
+
+a {
+    color: var(--color-primary-light);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    max-width: 100%;
+    display: inline-block;
+}
+
+/* ========================================================================== */
+/* Общие компоненты (Buttons, Forms etc.)                                   */
+/* ========================================================================== */
+
+.btn {
+    padding: 12px 20px;
+    border-radius: 7px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background: var(--gradient-text);
+    color: var(--color-white);
+    font-size: 20px;
+    font-family: 'Gilroy', sans-serif;
+    font-weight: 600;
+    flex: 1;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-secondary {
+    background: var(--color-white);
+    height: 60px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Gilroy', sans-serif;
+    color: var(--color-primary);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: var(--color-dark-gray);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--color-border);
+    border-radius: 5px;
+    font-family: 'Gilroy', sans-serif;
+    font-size: 16px;
+}
+
+
+/* ========================================================================== */
+/* Основной контент (Main Content & Calculator)                             */
+/* ========================================================================== */
+
+.main-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    padding-top: 150px; /* Отступ от шапки */
+}
+
+.container {
+    width: 100%;
+    max-width: 1250px;
+}
+
+.content-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 90px;
+    width: 100%;
+}
+
+.text-content {
+    max-width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+.text-content h1 {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.1;
+    text-transform: uppercase;
+}
+
+.text-content p {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.calculator {
+    width: 100%;
+    max-width: 50%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    border-radius: 10px;
+    background: var(--gradient-calculator);
+}
+
+.calculator h2 {
+    font-size: 32px;
+    text-align: left;
+}
+
+.inputs-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input-group {
+    border-radius: 5px;
+    padding: 10px 20px;
+    background-color: white;
+}
+
+.input-group label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.input-field-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+    padding-left: 5px;
+}
+
+.input-field-wrapper input {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: 'Gilroy', sans-serif;
+    font-size: 28px;
+    font-weight: 300;
+    width: 80%;
+}
+
+.input-field-wrapper span {
+    font-size: 20px;
+    font-weight: 600;
+    color: #B0B0B0;
+}
+
+.swap-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%; /* Центрируем иконку */
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 45px;
+    border-radius: 5px;
+    background: var(--gradient-text);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.preset-amounts {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.preset-btn {
+    padding: 10px 20px;
+    background: var(--color-white);
+    border: 1px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    font-family: 'Gilroy', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-dark-gray);
+}
+.preset-btn:hover {
+    border-color: #efefef;
+    color: var(--color-primary);
+}
+.preset-btn.active {
+    background-color: var(--color-white);
+    font-weight: 600;
+    border: 1px solid var(--color-border);
+}
+
+.duration-select-wrapper {
+    position: relative;
+}
+
+#duration-select {
+    width: 100%;
+    height: 60px;
+    padding: 0 15px;
+    border-radius: 5px;
+    border: none;
+    font-weight: 600;
+    color: var(--color-primary);
+    font-size: 16px;
+    font-family: 'Gilroy', sans-serif;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: white;
+    cursor: pointer;
+}
+
+.price-hint {
+    position: absolute;
+    top: 50%;
+    left: 140px; /* Позиционирование рядом с текстом */
+    transform: translateY(-50%);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--color-medium-gray);
+    pointer-events: none;
+}
+
+.summary {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    margin-top: 1rem;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+}
+.summary-row span:first-child {
+    text-transform: lowercase;
+}
+.summary-row span:last-child {
+    font-weight: 500;
+    color: var(--color-primary);
+}
+.summary-row.total span {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.buttons-wrapper {
+    display: flex;
+    gap: 15px;
+}
+
+/* ========================================================================== */
+/* Стили для страницы авторизации                                           */
+/* ========================================================================== */
+
+.login-container {
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    padding: 40px;
+    background: var(--gradient-calculator);
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 32px;
+    color: var(--color-primary);
+}
+
+/* Стили для полей ввода с "плавающей" меткой */
+.login-form-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.login-form-input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid var(--color-border);
+    border-radius: 7px;
+    background-color: var(--color-white);
+    font-size: 16px;
+    font-family: 'Gilroy', sans-serif;
+    color: var(--color-dark-gray);
+    transition: border-color 0.2s ease;
+}
+
+.login-form-label {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    color: var(--color-medium-gray);
+    pointer-events: none;
+    transition: all 0.2s ease-in-out;
+    background-color: var(--color-white);
+    padding: 0 5px;
+}
+
+.login-form-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+}
+
+/* Анимация метки при фокусе или вводе текста */
+.login-form-input:focus + .login-form-label,
+.login-form-input:not(:placeholder-shown) + .login-form-label {
+    top: -10px;
+    left: 10px;
+    font-size: 12px;
+    color: var(--color-primary);
+}
+
+/* Стили для неактивного поля пароля */
+.login-form-input:disabled {
+    background-color: #f0f2f5;
+    cursor: not-allowed;
+}
+
+.login-form-input:disabled + .login-form-label {
+    background-color: #f0f2f5;
+}
+
+
+/* Стили для кнопок */
+.login-button-container {
+    position: relative;
+    width: 100%;
+    height: 60px; /* Высота равна высоте кнопки */
+    margin-bottom: 15px;
+}
+
+.btn-login, .btn-recover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+}
+
+.btn-login:hover, .btn-recover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-login:active, .btn-recover:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* Ссылка "Забыл пароль" */
+.forgot-password-link {
+    text-align: center;
+    font-size: 14px;
+    color: var(--color-primary-light);
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.forgot-password-link:hover {
+    text-decoration: underline;
+}
+
+/* Вспомогательный класс для скрытия элементов */
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.95);
+}
+
+/* Стили для модального окна уведомления */
+.notification-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+    opacity: 1;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.notification-content {
+    padding: 25px 40px;
+    background: var(--color-white);
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    color: var(--color-primary);
+    font-weight: 500;
+    transform: scale(1);
+    transition: transform 0.3s ease;
+}
+
+.notification-modal.hidden .notification-content {
+    transform: scale(0.9);
+}
+
+/* ========================================================================== */
+/* Стили модального окна (Payment Modal)                                    */
+/* ========================================================================== */
+
+.payment-modal {
+    display: none; /* Управляется через JS */
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+.payment-modal-content {
+    background: var(--color-white);
+    padding: 30px;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.close-modal {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 28px;
+    cursor: pointer;
+    color: var(--color-medium-gray);
+}
+
+.payment-modal h3 {
+    margin-bottom: 25px;
+    text-align: center;
+    color: var(--color-primary);
+    font-size: 24px;
+}
+
+.payment-summary {
+    background: var(--color-light-gray);
+    padding: 15px;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+
+.summary-line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+.summary-line.total {
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--color-primary);
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--color-border);
+}
+
+.modal-pay-btn {
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* ========================================================================== */
+/* Адаптивность (Responsive)                                                */
+/* ========================================================================== */
+
+@media (max-width: 1024px) {
+    .content-wrapper {
+        flex-direction: column;
+        gap: 40px;
+        align-items: center;
+    }
+
+    .text-content,
+    .calculator {
+        width: 100%;
+        max-width: 550px;
+    }
+
+    .text-content {
+        text-align: center;
+        align-items: center;
+    }
+
+    .preset-amounts {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 767px) {
+    .main-section {
+        padding-top: 100px; /* Уменьшаем отступ для мобильных */
+    }
+    .btn {
+        padding: 10px;
+        font-size: 12px;
+    }
+    .btn-primary {
+        font-size: 16px;
+    }
+    .price-hint {
+        display: none; /* Скрываем на маленьких экранах для простоты */
+    }
+}
+
+@media (max-width: 480px) {
+    .text-content h1 { font-size: 28px; }
+    .text-content p { font-size: 18px; }
+    .calculator { padding: 20px; }
+    .buttons-wrapper { flex-direction: column; }
+    .btn-secondary { width: 100%; }
+    .preset-amounts { gap: 5px; }
+    .preset-btn {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+}
