@@ -1,0 +1,51 @@
+# Блок Laravel: Перенаправление всех запросов на index.php
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
+    RewriteEngine On
+
+    # Обработка запросов к символической ссылке на хранилище (если вы ее используете)
+    RewriteRule ^storage/(.*)$ /leademy-pay/storage/app/public/$1 [L]
+
+    # Перенаправление HTTP на HTTPS
+    RewriteCond %{HTTPS} !=on
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    # Обработка запросов, которые не являются файлами или директориями
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>
+
+# Блок SEO-редиректов
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # 1. Редирект с www на без-www (выберите один вариант)
+    # Если ваш основной домен БЕЗ www (например, example.com)
+    RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+    RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+    # 2. Удаление конечного слэша (/) из URL
+    # Чтобы example.com/about/ стало example.com/about
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)/$ /$1 [R=301,L]
+
+    # 3. Удаление index.php из URL
+    # Чтобы example.com/index.php стало example.com
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s(.*)/index\.php [NC]
+    RewriteRule ^(.*)index\.php$ /$1 [R=301,L]
+</IfModule>
+
+# Блок безопасности: Защита важных файлов
+<Files ".env">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<FilesMatch "\.(env|log|yaml|xml|json)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
